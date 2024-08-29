@@ -10,14 +10,23 @@ dependencies:
   flutter:
     sdk: flutter
   riverpod: ^2.5.1
-  flutter_riverpod:
-  http:
+  flutter_riverpod: ^2.5.1  # 依存関係にバージョンを追加
+  http: ^0.14.0  # HTTPパッケージのバージョンを追加
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
 
-
 flutter:
   uses-material-design: true
+
+  # ローカライズ設定
+  generate: true
+  localization:
+    arb-dir: lib/l10n
+    template-arb-file: app_en.arb
+    output-localization-file: app_localizations.dart

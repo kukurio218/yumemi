@@ -26,7 +26,7 @@ class RepoListTile extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         subtitle: Text(
-          repo.language ?? 'Unknown',
+          repo.language,
           style: TextStyle(
             fontSize: 14,
             color: Colors.black54,
