@@ -6,13 +6,18 @@ import '../widgets/repo_list_tile.dart';
 class RepoSearchPage extends ConsumerWidget {
   final TextEditingController _controller = TextEditingController();
 
+  RepoSearchPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final repositories = ref.watch(gitHubRepositoryProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('GitHub Repo Search'),
+        title: const Text(
+          'GitHub Repo Search',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.black,
       ),
       body: Column(
@@ -23,7 +28,7 @@ class RepoSearchPage extends ConsumerWidget {
               controller: _controller,
               decoration: InputDecoration(
                 hintText: 'Enter a keyword',
-                hintStyle: TextStyle(color: Colors.black38),
+                hintStyle: const TextStyle(color: Colors.black38),
                 filled: true,
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
@@ -31,7 +36,7 @@ class RepoSearchPage extends ConsumerWidget {
                   borderSide: BorderSide.none,
                 ),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.search, color: Colors.black),
+                  icon: const Icon(Icons.search, color: Colors.black),
                   onPressed: () async {
                     try {
                       await ref
@@ -53,7 +58,7 @@ class RepoSearchPage extends ConsumerWidget {
           ),
           Expanded(
             child: repositories.isEmpty
-                ? Center(
+                ? const Center(
                     child: Text(
                       'No repositories found',
                       style: TextStyle(

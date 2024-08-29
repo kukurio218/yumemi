@@ -4,7 +4,7 @@ import '../models/github_repository.dart';
 class RepoDetailPage extends StatelessWidget {
   final GitHubRepository repo;
 
-  RepoDetailPage(this.repo);
+  const RepoDetailPage(this.repo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +12,10 @@ class RepoDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           repo.name,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.black,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white, // 戻るボタンの色
         ),
       ),
@@ -31,11 +31,11 @@ class RepoDetailPage extends StatelessWidget {
                   child:
                       Image.network(repo.ownerAvatarUrl, width: 50, height: 50),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     repo.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -45,15 +45,15 @@ class RepoDetailPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildInfoRow('Language', repo.language),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _buildInfoRow('Stars', repo.stars.toString()),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _buildInfoRow('Watchers', repo.watchers.toString()),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _buildInfoRow('Forks', repo.forks.toString()),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _buildInfoRow('Open Issues', repo.openIssues.toString()),
           ],
         ),
@@ -67,7 +67,7 @@ class RepoDetailPage extends StatelessWidget {
       children: [
         Text(
           '$title: ',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -75,7 +75,7 @@ class RepoDetailPage extends StatelessWidget {
         ),
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             color: Colors.black54,
           ),
