@@ -12,10 +12,7 @@ class RepoSearchPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'GitHub Repo Search',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text('GitHub Repo Search'),
         backgroundColor: Colors.black,
       ),
       body: Column(
@@ -35,10 +32,20 @@ class RepoSearchPage extends ConsumerWidget {
                 ),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.search, color: Colors.black),
-                  onPressed: () {
-                    ref
-                        .read(gitHubRepositoryProvider.notifier)
-                        .searchRepositories(_controller.text);
+                  onPressed: () async {
+                    try {
+                      await ref
+                          .read(gitHubRepositoryProvider.notifier)
+                          .searchRepositories(_controller.text);
+                    } catch (e) {
+                      // エラー発生時にSnackbarで通知
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Failed to load repositories: $e'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
