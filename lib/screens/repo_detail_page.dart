@@ -10,7 +10,14 @@ class RepoDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(repo.name),
+        title: Text(
+          repo.name,
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
+        iconTheme: IconThemeData(
+          color: Colors.white, // 戻るボタンの色
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -19,20 +26,61 @@ class RepoDetailPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.network(repo.ownerAvatarUrl, width: 50, height: 50),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(25.0),
+                  child:
+                      Image.network(repo.ownerAvatarUrl, width: 50, height: 50),
+                ),
                 SizedBox(width: 10),
-                Text(repo.name, style: TextStyle(fontSize: 24)),
+                Expanded(
+                  child: Text(
+                    repo.name,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
+            SizedBox(height: 20),
+            _buildInfoRow('Language', repo.language),
             SizedBox(height: 10),
-            Text('Language: ${repo.language}'),
-            Text('Stars: ${repo.stars}'),
-            Text('Watchers: ${repo.watchers}'),
-            Text('Forks: ${repo.forks}'),
-            Text('Open Issues: ${repo.openIssues}'),
+            _buildInfoRow('Stars', repo.stars.toString()),
+            SizedBox(height: 10),
+            _buildInfoRow('Watchers', repo.watchers.toString()),
+            SizedBox(height: 10),
+            _buildInfoRow('Forks', repo.forks.toString()),
+            SizedBox(height: 10),
+            _buildInfoRow('Open Issues', repo.openIssues.toString()),
           ],
         ),
       ),
+      backgroundColor: Colors.white,
+    );
+  }
+
+  Widget _buildInfoRow(String title, String value) {
+    return Row(
+      children: [
+        Text(
+          '$title: ',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+          ),
+        ),
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.black54,
+          ),
+        ),
+      ],
     );
   }
 }
